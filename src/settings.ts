@@ -35,4 +35,8 @@ Dotenv.config()
 if (!process.env.DISCORD_TOKEN) {
   throw new Error("DISCORD_TOKEN must be set.");
 }
+else if (!process.env.CH_CATEGORY) {
+  throw new Error("CH_CATEGORY must be set.")
+}
 export const DISCORD_TOKEN = process.env.DISCORD_TOKEN
+export const CH_CATEGORY = process.env.CH_CATEGORY

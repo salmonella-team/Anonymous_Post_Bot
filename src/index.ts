@@ -1,34 +1,27 @@
 import * as Discord from 'discord.js'
-import {Partials, Intents, DISCORD_TOKEN} from './settings'
+import {Partials, Intents, DISCORD_TOKEN, CH_CATEGORY} from './settings'
+import {Response} from './commands/response'
 export const Client = new Discord.Client({
   partials: Partials,
   intents: Intents,
 })
 
-Client.on('messageCreate', (message) => {
+Client.on('messageCreate', async (message) => {
+
+  // チャンネルをキャッシュ
+  const channel = Client.channels.cache.get(message.channel.id) as Discord.TextChannel
+  await channel.messages.fetch(message.id)
+  //await console.log(channel.messages.fetch())
+
+  // botの投稿を無視する
   if (message.author.bot) {
     return
   }
-  if (message.content === 'おはよう') {
-    message.reply('おっはー')
-    message.reply({content: '直接10連ガチャ', allowedMentions: {repliedUser: false}})
+  // メッセージが投稿されたチャンネルが指定カテゴリの場合発火　
+  else if (channel.parentId === CH_CATEGORY) {
+    Response(message, channel)
   }
 })
-
-Client.on('messageReactionAdd', async (reaction) => {
-    console.log(reaction.emoji)
-  if (reaction.message.author?.bot) {
-    return
-  } 
-  if (reaction.emoji.id === '746666213370757231') {
-    // 起動前のメッセージを取得できないためキャッシュを取得
-    const channel = Client.channels.cache.get(reaction.message.channel.id) as Discord.TextChannel
-    await channel.messages.fetch(reaction.message.id)
-    const reaction_riamu_count = reaction.message.reactions.cache.get('746666213370757231')?.count
-    reaction.message.reply(`りあむ絵文字は${reaction_riamu_count}個です`)
-  }
-})
-
 // 起動時にコンソール出力
 Client.on('ready', () =>
   console.log('起動')
