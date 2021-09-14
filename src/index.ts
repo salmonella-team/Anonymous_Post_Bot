@@ -11,17 +11,18 @@ Client.on('messageCreate', async (message) => {
   // チャンネルをキャッシュ
   const channel = Client.channels.cache.get(message.channel.id) as Discord.TextChannel
   await channel.messages.fetch(message.id)
-  //await console.log(channel.messages.fetch())
 
   // botの投稿を無視する
   if (message.author.bot) {
     return
   }
+
   // メッセージが投稿されたチャンネルが指定カテゴリの場合発火　
   else if (channel.parentId === CH_CATEGORY) {
     Response(message, channel)
   }
 })
+
 // 起動時にコンソール出力
 Client.on('ready', () =>
   console.log('起動')
