@@ -14,7 +14,7 @@
     "dotenv": "^10.0.0"
   },
   "scripts": {
-    "start": "node ./build/index.js",
+    "start": "node ./dist/index.js",
     "debug": "ts-node ./src/index.ts",
     "compile": "tsc -p .",
     "compile:test": "tsc -p . --noEmit"
