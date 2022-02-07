@@ -19,7 +19,10 @@ Client.on('messageCreate', async (message) => {
 
   // メッセージが投稿されたチャンネルが指定カテゴリの場合発火　
   else if (channel.parentId === CH_CATEGORY) {
+    // console.log(await channel.messages.fetch())
     Response(message, channel)
+    // const msgs = (await channel.messages.fetch()).map(m => m)
+    // console.log(msgs)
   }
 })
 

@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     script: 'dist/index.js',
     watch: '.'
-   }],
+  }],
 
   deploy : {
     production : {
