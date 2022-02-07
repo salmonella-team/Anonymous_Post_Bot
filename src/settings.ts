@@ -38,5 +38,9 @@ if (!process.env.DISCORD_TOKEN) {
 else if (!process.env.CH_CATEGORY) {
   throw new Error("CH_CATEGORY must be set.")
 }
+else if (!process.env.SQLITE_PATH) {
+  throw new Error("SQLITE_PATH must be set.")
+}
 export const DISCORD_TOKEN = process.env.DISCORD_TOKEN
 export const CH_CATEGORY = process.env.CH_CATEGORY
+export const SQLITE_PATH = process.env.SQLITE_PATH
