@@ -1,6 +1,20 @@
 import * as Discord from 'discord.js'
-import {Partials, Intents, DISCORD_TOKEN, CH_CATEGORY} from './settings'
+import * as sqlite from 'sqlite3'
+import {Partials, Intents, DISCORD_TOKEN, CH_CATEGORY, SQLITE_PATH} from './settings'
 import {Response} from './commands/response'
+
+// DB接続
+const db = new sqlite.Database(SQLITE_PATH, (err: any) => {
+  if (err) {
+    return console.log('データーベースが何かおかしいようです・・・')
+  }
+}
+)
+
+
+db.serialize()
+
+
 export const Client = new Discord.Client({
   partials: Partials,
   intents: Intents,
