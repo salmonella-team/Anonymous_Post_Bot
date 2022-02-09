@@ -19,6 +19,7 @@
     "start": "node ./dist/index.js",
     "debug": "ts-node ./src/index.ts",
     "compile": "tsc -p .",
-    "compile:test": "tsc -p . --noEmit"
+    "compile:test": "tsc -p . --noEmit",
+    "migrate": "ts-node ./dist/migrate.js"
   }
 }
