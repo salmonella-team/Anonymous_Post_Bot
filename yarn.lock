@@ -74,6 +74,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.0.tgz#d9512fe037472dcb58931ce19f837348db828a62"
   integrity sha512-nmP+VR4oT0pJUPFbKE4SXj3Yb4Q/kz3M9dSAO1GGMebRKWHQxLfDNmU/yh3xxCJha3N60nQ/JwXWwOE/ZSEVag==
 
+"@types/sqlite3@^3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@types/sqlite3/-/sqlite3-3.1.8.tgz#e64310c5841fc01c1a8795d960d951e4cf940296"
+  integrity sha512-sQMt/qnyUWnqiTcJXm5ZfNPIBeJ/DVvJDwxw+0tAxPJvadzfiP1QhryO1JOR6t1yfb8NpzQb/Rud06mob5laIA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/ws@^7.4.7":
   version "7.4.7"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.7.tgz#f7c390a36f7a0679aa69de2d501319f4f8d9b702"
