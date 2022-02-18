@@ -12,7 +12,7 @@ const db = new sqlite.Database(SQLITE_PATH, (err: any) => {
 
 db.serialize(() => {
     db.run('BEGIN TRANSACTION')
-    db.run('CREATE TABLE thread(id, thread_count)')
+    db.run('CREATE TABLE thread(id unique, thread_count int)')
     db.run('COMMIT')
 })
 

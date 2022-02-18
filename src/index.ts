@@ -1,12 +1,22 @@
 import * as Discord from 'discord.js'
-import {Partials, Intents, DISCORD_TOKEN, CH_CATEGORY} from './settings'
+import * as sqlite from 'sqlite3'
+import {Partials, Intents, DISCORD_TOKEN, CH_CATEGORY,SQLITE_PATH} from './settings'
+import {thread_update} from './transaction'
 import {Response} from './commands/response'
 
-
+// Discord接続
 export const Client = new Discord.Client({
   partials: Partials,
   intents: Intents,
 })
+
+//db接続
+export const db = new sqlite.Database(SQLITE_PATH, (err: any) => {
+  if (err) {
+    return console.log('データーベースが何かおかしいようです・・・')
+  }
+}
+)
 
 Client.on('messageCreate', async (message) => {
 
@@ -19,10 +29,15 @@ Client.on('messageCreate', async (message) => {
     return
   }
 
+
+  const count = 1
   // メッセージが投稿されたチャンネルが指定カテゴリの場合発火　
-  else if (channel.parentId === CH_CATEGORY) {
+  if (channel.parentId === CH_CATEGORY) {
     // console.log(await channel.messages.fetch())
-    Response(message, channel)
+    // スレッド数を更新するとともに取得
+    let count2 = thread_update(db, channel.id)
+    console.log(count2)
+    Response(message, channel, count)
     // const msgs = (await channel.messages.fetch()).map(m => m)
     // console.log(msgs)
   }

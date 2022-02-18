@@ -3,7 +3,7 @@ import * as Discord from 'discord.js'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ja'
 
-export function Response(message: Discord.Message, channel: Discord.TextChannel) {
+export function Response(message: Discord.Message, channel: Discord.TextChannel, count: any) {
   // チャンネルの説明を取得→分割
   const topic: any = channel.topic
   const channel_setting = topic.split(' ')
@@ -12,7 +12,7 @@ export function Response(message: Discord.Message, channel: Discord.TextChannel)
   const nanashi_name = channel_setting[0]
 
   // レス番号処理
-  const res_count = Number(channel_setting[2]) + 1
+  const res_count = count
 
   if (message.attachments.size) {
     

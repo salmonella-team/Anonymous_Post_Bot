@@ -4,3 +4,8 @@
 ```
 yarn install
 ```
+
+## SQL SETUP
+```
+yarn run migrate
+```
