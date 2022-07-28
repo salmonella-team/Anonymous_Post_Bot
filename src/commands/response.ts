@@ -13,27 +13,25 @@ export function Response(message: Discord.Message, channel: Discord.TextChannel,
 
   // レス番号処理
   const res_count = count
-
-  if (message.attachments.size) {
-    
-    // 添付された全ての画像(ファイル)のURLを取得する
-    const files = message.attachments.map(attachment => attachment.url)
-    message.delete()
-
-    // ファイルを指定してメッセージを送信する
-    message.channel.send({})
-    channel.send(`**${res_count}** ${nanashi_name} **${dayjs(Date()).locale('ja').format('YYYY/MM/DD(dd) hh:mm:ss')}** \n${ files }`)
-    channel.setTopic(channel_setting[0] + " " + channel_setting[1] + " " + res_count)
-
-    return
-  }
-  // 添付ファイルが存在していない場合はメッセージ削除→再投稿
-  else {
+  
+  // 画像なし
+  if (message.attachments.size == 0){
+    console.log("画像なし")
     const re_post_message = message.content
     message.delete()
     // console.log(channel.topic)
     channel.send(`**${res_count}** ${nanashi_name} **${dayjs(Date()).locale('ja').format('YYYY/MM/DD(dd) hh:mm:ss')}** \n${re_post_message}`)
-    channel.setTopic(channel_setting[0] + " " + channel_setting[1] + " " + res_count)
+    return
+  }
+
+  else if (message.attachments.size >= 1) {
+    console.log("画像あり")
+    // 添付された全ての画像(ファイル)のURLを取得する
+    const files = message.attachments.map(attachment => attachment.url)
+    message.delete()
+    // ファイルを指定してメッセージを送信する
+    //message.channel.send({})
+    channel.send(`**${res_count}** ${nanashi_name} **${dayjs(Date()).locale('ja').format('YYYY/MM/DD(dd) hh:mm:ss')}** \n${ files }`)
     return
   }
 }
