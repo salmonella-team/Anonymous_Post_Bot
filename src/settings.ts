@@ -44,3 +44,5 @@ else if (!process.env.SQLITE_PATH) {
 export const DISCORD_TOKEN = process.env.DISCORD_TOKEN
 export const CH_CATEGORY = process.env.CH_CATEGORY
 export const SQLITE_PATH = process.env.SQLITE_PATH
+export const BOT_SEED = process.env.BOT_SEED ?? 's4lm0n3ll4_anon'
+export const MAKE_CH_CHANNEL = process.env.MAKE_CH_CHANNEL ?? ''
